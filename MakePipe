@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MakePipe : MonoBehaviour
+{
+    public GameObject pipe; // pipe 생성
+    public float timeDiff;  // 유니티 에서 시간 설정
+    float timer = 0;    // 시간 설정
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        timer += Time.deltaTime;
+        // if(tumer > 1){Instantiate(pipe);} 1초마다 파이트 생성
+        if (timer > timeDiff)
+        {
+            GameObject newpipe = Instantiate(pipe); // pipe 찍어내는 코드
+            newpipe.transform.position = new Vector3(0, Random.Range(-1.7f, 5.7f), 0); // 랜덤으로 파이프 위치 설정
+            timer = 0;
+            Destroy(newpipe, 10.0f); // 시간 설정 후에 생성된 파이프 삭제
+        }
+    }
+}
